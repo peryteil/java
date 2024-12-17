@@ -1,6 +1,6 @@
 package dto;
 
-public class TelBookDto extends Object{
+public class TelBookDto {
     private int id;
     private String name;
     private int age;
@@ -17,13 +17,13 @@ public class TelBookDto extends Object{
         this.telNum = telNum;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return id +  "\t  "  + name + "\t" + age + "\t" + address + "\t" + telNum;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
