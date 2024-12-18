@@ -1,0 +1,19 @@
+service
+dto(클래스)
+repository
+controller
+
+Group
+greeting("안녕하세요")
+
+
+BoyGroup boy = new BoyGroup()
+BoyGroup <-
+greeting
+안녕하세요 세븐틴이에요
+
+상속
+인터페이스 - >
+groupInterface->
+override->
+boyandgirlgroup

@@ -1,0 +1,20 @@
+서브쿼리(subquery)
+
+select * from girl_group;
+
+select * from song;
+
+노래 제목이 '미스터'인 그룹의 소속사를 4 로 변경하는 작업
+
+1. song 테이블에서 title 이 '미스터'인 s_id를 찾는다.
+select s_id from song where title = '미스터';
+------> 103
+
+2. girl_group 테이블에 s_id 와 같은 hit_song_id를 찾아
+   enter_id를 수정한다.
+
+update girl_group set enter_id = 4
+  where hit_song_id = (select s_id from song where title = '미스터');
+
+select * from girl_group;
+

@@ -1,0 +1,51 @@
+select * from song as s
+inner join girl_group as g
+on s.s_id = g.hit_song_id
+inner join entertainment as e
+on g.enter_id = e.e_id;
+
+1. 가사에 me를 포함하는 자료의
+소속사, 그룹이름, 노래제목, 가사를
+출력합니다.
+
+SELECT e.name, g.name, s.title
+FROM entertainment e
+join girl_group g 
+on e.e_id = g.enter_id
+join song s
+on g.hit_song_id = s.s_id;
+
+2. 소속사별 소속그룹의 수를 출력
+
+select e.name, count(*) as 그룹수
+from entertainment e
+join girl_group g
+on e.e_id = g.enter_id
+group by e.name;
+
+inner join : join하는 테이블에 공통적으로
+함께 있는 자료들을 추출
+
+select * from girl_group;
+
+select * from song;
+
+select g.g_id, name from girl_group g
+join song s
+on g.hit_song_id = s.s_id;
+
+select g.g_id, name from girl_group g
+left join song s
+on g.hit_song_id = s.s_id;
+
+select g.g_id,  name ,title from girl_group g
+left join song s
+on g.hit_song_id = s.s_id;
+
+select g.g_id,  name ,title from girl_group g
+right join song s
+on g.hit_song_id = s.s_id;
+
+
+
+

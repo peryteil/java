@@ -1,0 +1,38 @@
+
+create table employee(
+id int primary key auto_increment,
+name varchar(10),
+superior_id int);
+
+desc employee;
+
+insert into employee (name, superior_id)
+values ('김사장',null),
+('정과장',1),
+('최대리',2),
+('이대리',2),
+('박고문',null);
+
+select * from employee;
+
+selfjoin
+
+em1     ,        em2
+
+fk               pk
+
+self 1.id, 1.name, 2. name
+from 1 jon 2
+on 1.su=2.id;
+
+id 직원     상사
+============
+2 정과장  김사장
+3 최대리  정과장
+4 이대리  정과장
+
+select em1.id, em1.name as '직원', em2.name as '상사'
+from employee as em1
+inner join employee as em2
+on em1.superior_id = em2.id;
+

@@ -1,0 +1,41 @@
+staus 2 또는 3 인 자료 중에(in)
+belong에 C를 포함하는 자료들을 (like)
+s_id, name, belong, stauts를 출력
+name에 대해서 내림차순으로 출력
+
+select s_id, name, belong, status from student
+where
+status in (2,3) nad belong like '%C%'
+order by name desc;
+
+삭제/ 수정은 완전히 조심!!!!!
+drop: 완전히 구조까지 삭제
+delete: 내용만 삭제하는 것 ---- 조건을 주는 것을 명심
+
+
+delete from student;
+
+select * from student;
+
+source 
+chcp 65001
+
+select * from student;
+
+delete from student where name = '나미';
+나미만 삭제
+select * from student;
+폰 번호 중에 343 을 포함하는 자료를 삭제
+delete from student where phone like '%343%';
+
+select * from student;
+
+drop table 테이블명;
+drop database 데이터베이스명;
+
+drop table student;
+
+show tables;
+
+select * from student;
+

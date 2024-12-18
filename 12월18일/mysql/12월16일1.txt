@@ -1,0 +1,259 @@
+
+update 구문-항상 조건을 달아서 처리
+update 테이블명
+            set 필드명1= 값,
+                 필드명2= 값
+where 필드명 조건...
+
+update student set phone='010-1111-2222';
+
+select * from student;
+
+조로(s_id : 20100102)의 belong을 DANCE 변경
+
+update student set belong = 'DANCE'
+where s_id = '20100102';
+
+select * from student;
+
+name이 오공 친구의
+belong = 'Golf', phone= '119'
+
+update student set belong = 'Golf', phone= '119
+where name ='오공';
+where s_id = '20100505';
+
+CRUD
+C:Create(Insert into 테이블명.. 구문)
+R:Read(Select * from 테이블명... 구문)
+U:Update(Update table명... 구문)
+D:Delete(Delete from table명.... 구문)
+
+test_db.dept_table
+
+
+dept 테이블을 생성(
+
+CREATE TABLE dept(
+status INT DEFAULT 0,
+_dept_id CHAR(9),
+_dept_name VARCHAR(20) NOT NULL,
+_dept_loc VARCHAR(20) NOT NULL,
+);
+
+CREATE TABLE dept (
+ seq INT NOT NULL AUTO_INCREMENT,
+dept_id VARCHAR(20),
+dept_name VARCHAR(100)NOT NULL,
+dept_loc VARCHAR(100)NOT NULL,  
+  PRIMARY KEY(seq),
+);
+
+_dept_id : 기본키, 자동증가
+_dept_name : 문자 - 널 허용 안함
+_dept_loc : 문자 - 널 허용 안함
+
+data 입력
+INSERT INTO dept (dept_name, dept_loc)
+VALUES('기획부','서울'),
+VALUES('영업1부','서울'),
+VALUES('영업2부','부산'),
+VALUES('영업3부','대구'),
+VALUES('관리부','서울');
+1. 기획부 서울
+2. 영업1부 서울
+3. 영업2부 부산
+4. 영업3부 대구
+5. 관리부 서울
+
+출력
+전체 영업부 자료를 ID, NAME, LOCATION을 필드명으로 출력
+
+영업3부 삭제
+
+관리부의 지역을 제주도로 변경 
+
+CREATE TABLE dept(
+_dept_id CHAR(9),
+_dept_name VARCHAR(20) NOT NULL,
+_dept_loc VARCHAR(20) NOT NULL,
+status INT DEFAULT 0,
+);
+
+create table dept(
+dept_id int primary key auto_increment,
+dept_name varchar(20) not null,
+dept_loc varchar(10) not null);
+
+insert into dept (dept_name, dept_loc) values 
+('기획부','서울'),
+('영업1부','서울'),
+('영업2부','부산'),
+('영업3부','대구'),
+('관리부','서울');
+
+select * from dept;
+
+select dept_id as NAME, dept_name as NAME, dept_loc as LOCATION
+from dept
+where dept_name like'영업%';
+
+select dept_id as NAME, dept_name as NAME, dept_loc as LOCATION
+from dept
+where name like'영업%';
+인식안됨
+select dept_id as NAME, dept_name as NAME, dept_loc as LOCATION
+from dept
+where NAME like'영업%';
+인식안됨.
+
+delete from dept where dept_name = '영업3부';
+
+select * from dept;
+
+update dept set dept_loc = '제주도' where dept_name='관리부';
+
+select * from dept;
+
+구조변경 구문
+-- modify : 필드명을 못바꾸는것
+alter table 테이블명
+modify column 원래이름 타입...
+
+
+change:필드명까지 바꾸는 것
+alter table 테이블명
+change column 원래이름 바꿀이름 타입...
+
+alter table dept
+change column dept_name name varchar(50);
+
+desc dept;
+데이터 구조
+
+show tables;
+
+show create table dept;
+테이블 생성 구문
+
+select * from student;
+
+기본함수 --- group by
+sum합계,avg평균,count,max,min
+
+연산조건으로 묶을 그룹 지정 : group by
+묶은 그룹의 결과에 대한 별도의 조건을 지정 : having 
+
+select count( name) from student;
+
+select count(*) from student;
+
+select count(*) as TotalRow from student;
+
+select count(*) as count from student where belong = 'computer';
+
+Belong		count
+=====================
+computer 	4
+dance 		2
+sports 		3
+
+
+select * from student;
+
+select belong as Belong, count(*) as Count from student
+group by belong; 
++----------+-------+
+| Belong   | Count |
++----------+-------+
+| COMPUTER |     4 |
+| DANCE    |     5 |
+| SPORTS   |     2 |
+| ENGLISH  |     2 |
+| MUSIC    |     2 |
+| Golf     |     1 |
++----------+-------+
+6 rows in set (0.00 sec)
+
+select belong as Belong, count(*) as Count from student
+group by belong
+order by belong asc;
+오름차순 정렬
+
+select belong as Belong, count(*) as Count from student
+group by belong
+order by count(*) asc;
+카운트순 정렬
+
+select belong as Belong, count(*) as  BelongCount from student
+group by belong
+order by Belongcount asc;
+
+select belong as Belong, count(*) as  BelongCount from student
+group by belong
+having BelongCount >= 3
+order by Belongcount asc;
++----------+-------------+
+| Belong   | BelongCount |
++----------+-------------+
+| COMPUTER |           4 |
+| DANCE    |           5 |
++----------+-------------+
+2 rows in set (0.00 sec)
+카운트가 3보다 큰 것만 보여줌
+
+소속이 Computer 또는 Dance 그룹의 학생 수를
+학생수의 내림차순으로 출력
+
+select belong, count(*) as groupCount from student
+where belong in ('computer', 'dance')
+group by belong
+order by groupCount desc;
+
+select belong, count(*) as groupCount from student
+where belong in ('computer', 'dance')
+group by belong
+having groupcount >=5
+order by groupCount desc;
+
+소속으로 묶어준 후에 소속인원수, status 합을
+select belong as 소속,count(*)인원수, sum(status) as 합
+from student
+group by belong;
++----------+-----------+------+
+| 소속     | 인원수    | 합   |
++----------+-----------+------+
+| COMPUTER |         4 |    9 |
+| DANCE    |         5 |   11 |
+| SPORTS   |         2 |    2 |
+| ENGLISH  |         2 |    2 |
+| MUSIC    |         2 |    6 |
+| Golf     |         1 |    2 |
++----------+-----------+------+
+6 rows in set (0.00 sec)
+
+select belong as 소속,count(*)인원수, sum(status) as 합
+from student
+group by belong
+order by 합 desc;
++----------+-----------+------+
+| 소속     | 인원수    | 합   |
++----------+-----------+------+
+| DANCE    |         5 |   11 |
+| COMPUTER |         4 |    9 |
+| MUSIC    |         2 |    6 |
+| SPORTS   |         2 |    2 |
+| ENGLISH  |         2 |    2 |
+| Golf     |         1 |    2 |
++----------+-----------+------+
+6 rows in set (0.00 sec)
+
+select * from student;
+
+select count(*), max(status), min(status), sum(status), avg(status)
+from student
+group by belong;
+
+
+
+

@@ -1,0 +1,25 @@
+- distinct: 중복을 제외한 데이터만...
+- limit 
+select distinct *
+
+select * from student limit 3;
+
+
+select * from student limit 3 offset 5;
+
+select * from student limit 3 offset 1;
+
+select * from student limit 3 offset 0;
+
+select * from student limit 3 offset 3;
+
+
+create database idolgroup;
+
+show databases;
+
+use idolgroup;
+
+source C:/$_hyeseon/db/girl_song_schema.sql
+
+source C:/$_hyeseon/db/girl_song_data.sql

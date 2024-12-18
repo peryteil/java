@@ -1,0 +1,86 @@
+
+select rand()*10;
+
+select rand()*10 +1;
+
+select floor (rand()*10 +1);
+
+select floor (rand()*44 +1) as 1st,
+	floor (rand()*44 +1) as 2st,
+	floor (rand()*44 +1) as 3st,
+	floor (rand()*44 +1) as 4st,
+	floor (rand()*44 +1) as 5st,
+	floor (rand()*44 +1) as 6st;
+
+
+select name from girl_group
+where char_length(name) = 3;
+
+where name like'___'
+
+
+문제3> 위의 값을 3자리 마다 콤마를 추가해 정수로 출력하세요. 
+
+SELECT FORMAT(123456789.1234, 0); <-- 끝에 0으로 바꾸면 소수 버림
+
+
+SELECT TRIM(BOTH 'a' FROM 'aababaa'); <-- 좌우 공백 삭제(필수)
+
+문제4> 아래 email에서 id 만 추출해 주세요.
+select substring_index('test999',',',2);
+
+select substring_index('test999@gmail.com','@',1);
+
+
+SELECT SUBSTRING_INDEX
+  TRIM(BOTH '137'(SUBSTRING_INDEX(addr, ' ', -3), ' (', 1) AS 도로명,
+    TRIM(BOTH ')' FROM SUBSTRING_INDEX(SUBSTRING_INDEX(addr, '(', -1), ')', 1)) AS 동주소
+FROM test;
+
+select substring_index(addr,' ', 3)from test;
+
+select substring_index(substring_index(addr,' ',3),' ',-1)from test;
+
+select substring_index(substring_index(addr,'(', -1), ')', 1) as 동주소 from test;
+
+alter table test
+add column board_type date;
+
+desc test;
+
+drop table test;
+
+create table test (
+addr varchar(100) not null,
+insert_date date default (current_date)
+);
+
+
+insert into test (addr)
+values ('서울');
+
+select * from test;
+
+select * from girl_group;
+
+그룹이 데뷔한 해가 ...
+
+ 데뷔년도     그룹수
+==============
+   2007          1
+   2008          1
+   2009          5
+
+select year(debut) as 데뷔년도, count(*) as 그룹수
+from girl_group
+group by 데뷔년도
+ORDER BY 데뷔년도 ASC;
+
+SELECT 
+    YEAR(CURDATE()) - YEAR('2004-08-31') - 
+    (DATE_FORMAT(CURDATE(), '%m-%d') < DATE_FORMAT('2004-08-31', '%m-%d')) AS 장원영 만 나이;
+
+
+
+
+

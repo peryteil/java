@@ -1,0 +1,32 @@
+내 컴퓨터
+localhost
+127.0.0.1
+
+C:\Users\80417>ipconfig
+
+Windows IP 구성
+
+
+이더넷 어댑터 이더넷:
+
+   연결별 DNS 접미사. . . . :
+   링크-로컬 IPv6 주소 . . . . : fe80::b88a:eec5:3fb8:be74%14
+   IPv4 주소 . . . . . . . . . : 192.168.0.3
+   서브넷 마스크 . . . . . . . : 255.255.255.0
+   기본 게이트웨이 . . . . . . : 192.168.0.1
+
+IPv4 주소 . . . . . . . . . : 192.168.0.3
+
+JDBC(Java Database Connectivity)
+
+mysql 자바 
+https://dev.mysql.com/downloads/connector/j/
+
+Platform Independent 다운로드
+
+자바소프트웨어에 압축풀기
+
+인텔리제이 project settings
+
+Libraries 에서 압축푼파일 선택
+

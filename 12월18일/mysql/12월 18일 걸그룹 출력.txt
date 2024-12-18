@@ -1,0 +1,29 @@
+
+
+노래 가사에 Give를 포함하는 자료를 girl_group 에서 찾아서 출력
+1. song 테이블에서 lyrics 에 "Give" 포함하는 자료
+   select  * from song where lyrics like '%Give%';
+select s_id from song where lyrics like '%Give%';
+
+select * from girl_group
+where hit_song_id = (select s_id from song where lyrics like '%Give%');
+
+노래 가사에 e 를 포함하는 자료를 girl_group 에서 찾아서 출력
+
+select s_id from song where lyrics like '%e%';
+
+select * from song where lyrics like '%e%';
+
+select * from girl_group
+where hit_song_id in (select s_id from song where lyrics like '%e%');
+
+노래 가사에 Give 를 포함하는 자료를 girl_group 에서 찾아서 삭제
+
+delete from girl_group
+where hit_song_id=(select s_id from song where lyrics like '%Give%');
+
+select * from 
+
+SELECT ROUND(3.789, 2);
+
+SELECT ROUND(333.789, -2);
