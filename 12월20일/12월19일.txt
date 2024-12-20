@@ -1,0 +1,117 @@
+
+[문항1] MySQL DB를 설치한 후 환경변수를 설정하는 절차와 경로를 적으시오
+
+내컴퓨터에서 MySQL 설치된 경로를 찾고 bin 폴더까지 접근하는 주소를 복사합니다.
+시스템 환경 변수 편집을 찾아 들어갑니다.
+환경변수  path 편집을 눌러줍니다.
+새로 만들기를 클릭후 bin폴더까지 접근하는 주소를 붙여 넣어주고 확인 버튼을 누르면 완료됩니다.
+
+[문항2] root 사용자로 로그인 후 panDB를 생성하시오.
+
+mysql -u root -p
+1111
+
+create database panDB;
+
+[문항3] user1 사용자를 생성하고 panDB를 사용할 수 있는 권한을 설정하시오.
+
+create user 'user1'@'host' identified by '1111';
+
+grant all privileges on panDB.* to 'user1'@'host';
+
+[문항4] 아래의 네 개 테이블을 분석한 후 
+
+use panDB;
+
+CREATE TABLE dept (
+    dep_no INT PRIMARY KEY,
+    dep_name VARCHAR(10),
+    loc VARCHAR(10) NOT NULL
+);
+
+
+INSERT INTO dept (dep_no, dep_name, loc) VALUES
+(10, '총무부', '서울'),
+(20, '영업부', '부산'),
+(30, '전산부', '대전'),
+(40, '자재부', '광주');
+
+CREATE TABLE employee (
+    emp_no int PRIMARY KEY AUTO_INCREMENT,     
+    emp_name VARCHAR(10) NOT NULL,
+    dep_no INT,                
+    position VARCHAR(10) NOT NULL,      
+    salary INT DEFAULT '0',                 
+    hire_date DATE DEFAULT CURRENT_DATE,            
+    jumin_num CHAR(13) UNIQUE NOT NULL,       
+    phone_num VARCHAR(15) NOT NULL,            
+    mgr_emp_no INT                   
+);
+
+CREATE TABLE employee (
+    emp_no INT PRIMARY KEY AUTO_INCREMENT,   
+    emp_name VARCHAR(10) NOT NULL,           
+    dep_no INT,                             
+    position VARCHAR(10) NOT NULL,         
+    salary INT default 0,                 
+    hire_date DATE default (CURRENT_DATE),    
+    jumin_num CHAR(13) UNIQUE NOT NULL,       
+    phone_num VARCHAR(15) NOT NULL,         
+    mgr_emp_no INT                            
+);
+
+
+INSERT INTO employee (emp_name, dep_no, position, salary, hire_date, jumin_num, phone_num, mgr_emp_no) VALUES
+('홍길동', 10, '사장', 5000, '1980-01-01', '7211271109410', '01099699515', NULL),
+('한국남', 20, '부장', 3000, '1988-11-01', '6002061841224', '01024948424', 1),
+('이순신', 20, '과장', 3500, '1989-03-01', '6209172010520', '01026352672', 2),
+('이미라', 30, '대리', 2503, '1983-04-01', '8409282070226', '01094215694', 17),
+('이순라', 20, '사원', 1200, '1990-05-01', '8401041483626', '01094215694', 3),
+('공부만', 30, '과장', 4003, '1995-05-01', '8402121563616', '01191338328', 17),
+('놀기만', 20, '과장', 2300, '1996-06-01', '8011221713914', '01029463523', 2),
+('채송화', 30, '대리', 1703, '1992-06-01', '8105271014112', '01047111052', 17),
+('무궁화', 10, '사원', 1100, '1984-08-01', '8303291319116', '01025672300', 12),
+('공부해', 30, '사원', 1303, '1988-11-01', '8410031281312', '01027073174', 4),
+('류별나', 20, '과장', 1600, '1989-12-01', '8409181463545', '01071628290', 2),
+('류명환', 10, '대리', 1800, '1990-10-01', '8207211661117', '01042072622', 20),
+('무궁화', 10, '부장', 3000, '1996-11-01', '8603231183011', '01098110955', 1),
+('채시라', 20, '사원', 3400, '1993-10-01', '8001172065410', '01044452437', 3),
+('최진실', 10, '사원', 2000, '1991-04-01', '8303101932611', '01027491145', 12),
+('김유신', 30, '사원', 4000, '1981-04-01', '7912031009014', '01098218448', 4),
+('이성계', 30, '부장', 2803, '1984-05-01', '8102261713921', '0165358075', 1),
+('강감찬', 30, '사원', 1003, '1986-07-01', '8203121977315', '01033583130', 4),
+('임꺽정', 20, '사원', 2200, '1988-04-01', '8701301040111', '01086253078', 7),
+('깨똥이', 10, '과장', 4500, '1990-05-01', '8811232452719', '01090084876', 13);
+
+CREATE TABLE customer (
+    cus_no int PRIMARY KEY AUTO_INCREMENT,
+    cus_name VARCHAR(10) NOT NULL,   
+    tel_num VARCHAR(15),
+    jumin_num CHAR(13) UNIQUE NOT NULL,       
+    emp_no INT DEFAULT'0'                
+);
+
+INSERT INTO customer (cus_name, tel_num, jumin_num, emp_no) VALUES
+('류민이', '123-1234', '7001131537915', 3),
+('이강민', '343-1454', '6902161627914', 2),
+('이영희', '144-1655', '7503202636215', NULL),
+('김철이', '673-1674', '7704301234567', 4),
+('박류완', '123-1674', '7205211123675', 3),
+('서캔디', '673-1764', '6507252534566', NULL),
+('신똘이', '176-7677', '0006083648614', 7),
+('도쇠돌', '123-6774', '0008041346574', 9),
+('권홍이', '767-1234', '7312251234689', 13),
+('김안나', '767-1677', '7510152432168', 4);
+
+CREATE TABLE salary_grade (
+    sal_grade_no INT PRIMARY KEY,
+    min_sal INT NOT NULL,
+    max_sal INT NOT NULL
+);
+
+INSERT INTO salary_grade (sal_grade_no, min_sal, max_sal) VALUES
+(1, 8001, 10000),
+(2, 6001, 8000),
+(3, 4001, 6000),
+(4, 2001, 4000),
+(5, 1000, 2000);
